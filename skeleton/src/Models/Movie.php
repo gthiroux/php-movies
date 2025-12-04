@@ -13,7 +13,7 @@ class Movie extends Database
     private $genre;
     private $rating;
     private $is_watched;
-    public $movieList = [];
+    public $allMovies;
 
     public function getTitle()
     {
@@ -93,9 +93,7 @@ class Movie extends Database
 
         $queryExecute = $this->db->prepare($sql);
         $queryExecute->execute();
-        return $queryExecute->fetch(PDO::FETCH_OBJ);
-        //récupération du dernier élément de la base de donnée
-        //J'ai essayé de faire une boucle for et de push dans le tableau movieList mais erreur ($ movieList ne serait pas de type array)
+        return $queryExecute->fetchAll();
     }
     public function saveMovie()
     {

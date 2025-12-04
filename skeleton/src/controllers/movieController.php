@@ -6,7 +6,6 @@ $error = [];
 
 if (!empty($_POST)) {
     $movie = new Models\Movie();
-
     try {
         $movie->setTitle($_POST['title']);
     } catch (\Exception $e) {
@@ -41,10 +40,11 @@ if (!empty($_POST)) {
         }
     }
 }
-$allMovies = new Models\Movie();
-$allMovies->getAll();
+$movies = new Models\Movie();
+$allMovies = $movies->getAll();
+// var_dump($allMovies);
 
 render('movie', false, [
-    // 'movies' => $movies,
+    'allMovies' => $allMovies,
     'error' => $error
 ]);
